@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,20 +22,20 @@ class EncryptTest {
 
     @Test
     @DisplayName("Are Objects Instantiated")
-    public void Encrypt_areObjectsInstantiated() {
+    public void Encrypt_ObjectsAreInstantiatedCorrectly() {
         assertTrue(myTestEncrypt instanceof  Encrypt);
     }
 
     @Test
     @DisplayName("Encrypt String Matches Regex")
-    public void setWordToEncrypt_doesTheStringMatch() {
+    public void setWordToEncrypt_StringMatchesRegex() {
         myTestEncrypt.setWordToEncrypt("Hey there how are you doing");
         assertTrue(myTestEncrypt.validEncryptString(myTestEncrypt.getWordToEncrypt()));
     }
 
     @Test
     @DisplayName("Collect Characters")
-    public void collectCharacters_areCharactersCollectedInALIst_ArrayList() {
+    public void collectCharacters_CharactersAreCollectedInList_ArrayList() {
         List<Character> testCharacters = new ArrayList<>();
         myTestEncrypt.setWordToEncrypt("Whats Happening People");
         for (int i = 0; i < myTestEncrypt.getWordToEncrypt().length(); i++) {
@@ -45,7 +47,7 @@ class EncryptTest {
 
     @Test
     @DisplayName("Encrypted List")
-    public void EnctyptedList_areEncryptedCharactersCollectedInALIst_ArrayList() {
+    public void encryptedCharList_EncryptedCharactersAreCollectedInList_ArrayList() {
         List<Character> encryptedList = new ArrayList<>();
         myTestEncrypt.setWordToEncrypt("What are you");
 
@@ -57,6 +59,22 @@ class EncryptTest {
                 }
             }
         }
-        assertEquals(encryptedList,myTestEncrypt.encryptedWordList(myTestEncrypt.collectCharacters(myTestEncrypt.getWordToEncrypt()),3));
+        assertEquals(encryptedList,myTestEncrypt.encryptedCharList(myTestEncrypt.collectCharacters(myTestEncrypt.getWordToEncrypt()),3));
+    }
+
+    @Test
+    @DisplayName("Returns String From List")
+    void encryptedString_ReturnStringFromList_String() {
+        myTestEncrypt.setWordToEncrypt("Wer Rastet Der Rostet");
+        myTestEncrypt.setShiftFactor(3);
+        List <Character> myEncryptionList = myTestEncrypt.collectCharacters(myTestEncrypt.getWordToEncrypt());
+        String myEncryptedString = myTestEncrypt.encryptedCharList(myEncryptionList,myTestEncrypt.getShiftFactor()).stream()
+                                  .map(Objects::toString).collect(Collectors.joining());
+
+        assertEquals( myEncryptedString, myTestEncrypt.encryptedCharList( myTestEncrypt.collectCharacters(
+                                         myTestEncrypt.getWordToEncrypt()),myTestEncrypt.getShiftFactor())
+                                        .stream().map( Object::toString )
+                                        .collect( Collectors.joining() ));
+
     }
 }
