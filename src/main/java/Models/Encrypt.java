@@ -82,10 +82,9 @@ public class Encrypt {
 
     //Return Encrypted Characters As a String
     public String encryptedString(){
-        String encryptedWord = encryptedCharList( collectCharacters( getWordToEncrypt() ), getShiftFactor() )
-                                                .stream().map(Object::toString)
-                                                .collect(Collectors.joining());
-        return encryptedWord;
+        return encryptedCharList( collectCharacters( getWordToEncrypt() ), getShiftFactor() )
+                .stream().map(Object::toString)
+                .collect(Collectors.joining());
     }
 
 }

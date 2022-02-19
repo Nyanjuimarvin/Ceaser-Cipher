@@ -76,10 +76,7 @@ class EncryptTest {
         String myEncryptedString = myTestEncrypt.encryptedCharList(myEncryptionList,myTestEncrypt.getShiftFactor()).stream()
                                   .map(Objects::toString).collect(Collectors.joining());
 
-        assertEquals( myEncryptedString, myTestEncrypt.encryptedCharList( myTestEncrypt.collectCharacters(
-                                         myTestEncrypt.getWordToEncrypt()),myTestEncrypt.getShiftFactor())
-                                        .stream().map( Object::toString )
-                                        .collect( Collectors.joining() ));
+        assertEquals( myEncryptedString, myTestEncrypt.encryptedString() );
 
     }
 }

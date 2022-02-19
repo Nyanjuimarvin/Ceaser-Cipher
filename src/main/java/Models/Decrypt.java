@@ -2,6 +2,7 @@ package Models;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Decrypt {
 
@@ -72,5 +73,12 @@ public class Decrypt {
         }
 
         return decryptedCharsList;
+    }
+
+    public String decryptedWord (){
+
+        return decryptedChars( charsToDecrypt( getWordToDecrypt() ), getDecryptFactor() )
+                .stream().map(Object::toString)
+                .collect(Collectors.joining());
     }
 }

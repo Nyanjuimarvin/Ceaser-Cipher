@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,5 +59,18 @@ class DecryptTest {
         }
         assertEquals(testList,myDecrypt.decryptedChars( myDecrypt.charsToDecrypt
                 ( myDecrypt.getWordToDecrypt() ) ,5) );
+    }
+
+    @Test
+    @DisplayName("Returns Decrypted Word")
+    public void decryptedWord_ReturnsStringFromList_String() throws Exception {
+        myDecrypt.setWordToDecrypt("THE AEROPLANE OVER THE SEA");
+        myDecrypt.setDecryptFactor(3);
+        List <Character> myDecryptedList = myDecrypt.charsToDecrypt(myDecrypt.getWordToDecrypt());
+        String myEncryptedString = myDecrypt.decryptedChars( myDecryptedList,myDecrypt.getDecryptFactor() )
+                                                          .stream().map(Objects::toString)
+                                                          .collect(Collectors.joining());
+
+        assertEquals( myEncryptedString, myDecrypt.decryptedWord());
     }
 }
