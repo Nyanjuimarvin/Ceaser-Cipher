@@ -15,9 +15,11 @@ public class Encrypt {
     public void setWordToEncrypt(String wordToEncrypt) throws InvalidStringException {
         if( validEncryptString(wordToEncrypt) ) {
             this.wordToEncrypt = wordToEncrypt;
+        }else {
+            throw new InvalidStringException
+                    ("Invalid String: Valid Example(\"I am a Sentence\") " +
+                            "::-> Without Whitespace at Beginning and Punctuation/Special Symbols");
         }
-        throw new InvalidStringException("Invalid String: Valid Example(\"I am a Sentence\") ::-> Without Whitespace at Beginning and Punctuation/Special Symbols");
-
     }
 
     public String getWordToEncrypt() {
@@ -25,10 +27,11 @@ public class Encrypt {
     }
 
     public void setShiftFactor( int shiftFactor ) throws OutOfRangeException {
-        if( shiftFactor > 0 && shiftFactor < 26 )
-        this.shiftFactor = shiftFactor;
-
-        throw new OutOfRangeException("Invalid Shift Factor Range: Valid Range[ 1- 26 ]");
+        if( shiftFactor > 0 && shiftFactor < 26 ){
+            this.shiftFactor = shiftFactor;
+        }else {
+            throw new OutOfRangeException("Invalid Shift Factor Range: Valid Range[ 1- 26 ]");
+        }
     }
 
     public int getShiftFactor() {

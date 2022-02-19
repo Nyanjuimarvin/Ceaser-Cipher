@@ -28,9 +28,14 @@ class EncryptTest {
 
     @Test
     @DisplayName("Encrypt String Matches Regex")
-    public void setWordToEncrypt_StringMatchesRegex() throws Exception {
-        myTestEncrypt.setWordToEncrypt("Hey there how are you doing");
-        assertTrue( myTestEncrypt.validEncryptString( myTestEncrypt.getWordToEncrypt() ) );
+    public void setWordToEncrypt_StringMatchesRegex() throws InvalidStringException{
+        try {
+            myTestEncrypt.setWordToEncrypt("Hey there how are you doing");
+            assertTrue( myTestEncrypt.validEncryptString( myTestEncrypt.getWordToEncrypt() ) );
+        }catch (InvalidStringException ex){
+            ex.printStackTrace();
+        }
+
     }
 
     @Test
