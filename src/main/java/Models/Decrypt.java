@@ -7,6 +7,7 @@ public class Decrypt {
 
     private String wordToDecrypt;
     private int decryptFactor;
+    private final char [] alphabetArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".toCharArray();
 
     public void setWordToDecrypt(String wordToDecrypt) throws InvalidStringException {
         if(validDecryptString(wordToDecrypt)) {
@@ -38,13 +39,38 @@ public class Decrypt {
         return word.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*");
     }
 
+    public List <Character> alphabetList(){
+        List <Character> alphaList = new ArrayList<>();
+        for( char letter : alphabetArray ){
+            alphaList.add(letter);
+        }
+        return alphaList;
+    }
+
     public List<Character> charsToDecrypt(String encryptedWord){
         List <Character> decryptList = new ArrayList<>();
-        char [] decryptArray = encryptedWord.toCharArray();
-        for( char singleChar : decryptArray ){
+        for( char singleChar : encryptedWord.toCharArray() ){
             decryptList.add( singleChar );
-
         }
         return decryptList;
+    }
+
+    public char decrypt( char encryptedChar, int factor ){
+        return alphabetList().get( Math.abs( alphabetList().indexOf( encryptedChar ) + ( 26 - factor) ) % 26 );
+    }
+
+    public List <Character> decryptedChars(List <Character>encryptedChars , int decryptShift ){
+        List <Character> decryptedCharsList = new ArrayList<>();
+        for( char encryptedChar : encryptedChars ){
+            if( encryptedChar == ' ' )
+                decryptedCharsList.add(' ');
+
+            for( char alphaLetter : alphabetList() ){
+                if( alphaLetter == encryptedChar)
+                    decryptedCharsList.add(decrypt( alphaLetter, decryptShift));
+            }
+        }
+
+        return decryptedCharsList;
     }
 }

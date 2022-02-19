@@ -41,4 +41,21 @@ class DecryptTest {
         assertEquals(testList,myDecrypt.charsToDecrypt(myDecrypt.getWordToDecrypt()));
 
     }
+
+    @Test
+    @DisplayName("Decrypted Characters As A List")
+    public void decryptedChars_DecryptsCharactersInList_ArrayList() throws InvalidStringException {
+        List <Character> testList = new ArrayList<>();
+        myDecrypt.setWordToDecrypt("AHAT");
+
+        for( char encryptedChar : myDecrypt.charsToDecrypt(myDecrypt.getWordToDecrypt()) ){
+            if( encryptedChar == ' ') testList.add(' ');
+                for( char alphaLetter : myDecrypt.alphabetList() ){
+                    if( alphaLetter == encryptedChar )
+                        testList.add(myDecrypt.decrypt( encryptedChar, 5) );
+                }
+        }
+        assertEquals(testList,myDecrypt.decryptedChars( myDecrypt.charsToDecrypt
+                ( myDecrypt.getWordToDecrypt() ) ,5) );
+    }
 }
