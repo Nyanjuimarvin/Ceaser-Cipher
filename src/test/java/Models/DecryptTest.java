@@ -19,4 +19,10 @@ class DecryptTest {
         assertTrue(myDecrypt instanceof Decrypt);
     }
 
+    @Test
+    @DisplayName("Decrypt String Matches Regex")
+    public void setWordToEncrypt_doesTheStringMatch() {
+        myDecrypt.setWordToDecrypt("Les Enfants TeRriBles");
+        assertTrue(myDecrypt.validDecryptString(myDecrypt.getWordToDecrypt()));
+    }
 }

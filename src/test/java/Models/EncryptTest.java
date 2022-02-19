@@ -19,4 +19,11 @@ class EncryptTest {
     public void Encrypt_areObjectsInstantiated() {
         assertTrue(myTestEncrypt instanceof  Encrypt);
     }
+
+    @Test
+    @DisplayName("Encrypt String Matches Regex")
+    public void setWordToEncrypt_doesTheStringMatch() {
+        myTestEncrypt.setWordToEncrypt("Hey there how are you doing");
+        assertTrue(myTestEncrypt.validEncryptString(myTestEncrypt.getWordToEncrypt()));
+    }
 }
