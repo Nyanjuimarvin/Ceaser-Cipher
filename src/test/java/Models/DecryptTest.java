@@ -23,6 +23,6 @@ class DecryptTest {
     @DisplayName("Decrypt String Matches Regex")
     public void setWordToEncrypt_doesTheStringMatch() {
         myDecrypt.setWordToDecrypt("Les Enfants TeRriBles");
-        assertTrue(myDecrypt.validDecryptString(myDecrypt.getWordToDecrypt()));
+        assertTrue(myDecrypt.validDecryptString( myDecrypt.getWordToDecrypt() ) );
     }
 }
