@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.stream.Collectors;
 
 public class Encrypt {
 
@@ -33,7 +34,8 @@ public class Encrypt {
     public boolean validEncryptString(String word){
         return word.matches("([a-zA-z]+|[a-zA-Z]+\\s[a-zA-Z]+)*");
     }
-//Alphabet as List
+
+    //Alphabet as List
     public List<Character> alphabetLetters(){
         List<Character> charsToShift = new ArrayList<>();
         for(char letter: encryptCharArray){
@@ -50,15 +52,16 @@ public class Encrypt {
         }
      return enteredWords;
     }
+
    //Encryption Method
     public char encryptCharacters(char initialLetter,int shift){
         return alphabetLetters().get( ( alphabetLetters().indexOf(initialLetter) + shift ) % 26 );
     };
 
     //Encrypted Character List
-    public List<Character> encryptedWordList(List<Character>wordList,int shift){
+    public List<Character> encryptedCharList(List<Character>wordList,int shift){
 
-        List<Character> encryptedChars = new ArrayList<>();
+        ArrayList<Character> encryptedChars = new ArrayList<>();
         for(char newChar:wordList) {
             if(newChar == ' ') encryptedChars.add(' ');
             for(char alphabetLetter:alphabetLetters()){
@@ -68,6 +71,14 @@ public class Encrypt {
             }
         }
         return encryptedChars;
+    }
+
+    //Return Encrypted Characters As a String
+    public String encryptedString(){
+        String encryptedWord = encryptedCharList(collectCharacters(getWordToEncrypt()),getShiftFactor())
+                                                .stream().map(Object::toString)
+                                                .collect(Collectors.joining());
+        return encryptedWord;
     }
 
 }
