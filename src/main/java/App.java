@@ -34,9 +34,12 @@ public class App {
 
         //Prompt For Word
         try {
-            System.out.println(">>Enter the word you wish to encrypt:\n");
+            System.out.println("******************************************************************************");
+            System.out.println("::Enter the word you wish to encrypt:");
             String enteredWord = buffer.readLine();
-            System.out.println(">>Enter Shift Factor");
+            System.out.println("\n*****************************************************************************");
+
+            System.out.println("\n::Enter Shift Factor");
             int enteredFactor = scanner.nextInt();
 
             encrypt.setWordToEncrypt(enteredWord);
@@ -49,7 +52,7 @@ public class App {
             System.out.printf("Decrypted: %s %n",decrypt.decryptedWord() );
 
         }catch ( IOException ex){
-
+            ex.getMessage();
         }
 
     }
