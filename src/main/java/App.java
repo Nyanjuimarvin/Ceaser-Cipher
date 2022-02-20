@@ -11,6 +11,8 @@ public class App {
         Decrypt decrypt = new Decrypt();
         BufferedReader buffer = new BufferedReader( new InputStreamReader(System.in) );
         Scanner scanner = new Scanner(System.in);
+        String continues  = "cont";
+        String quit = "quit";
 
         System.out.println(" ____________________________________________________________________________");
         System.out.println("|                                                                            |");
@@ -21,8 +23,8 @@ public class App {
         System.out.println("|                                                                            |");
         System.out.println("|                           HOW TO PLAY:                                     |");
         System.out.println("*                            ---------                                       *");
-        System.out.println("|                     1: Continue ( enter c )                                |");
-        System.out.println("|                     2: Exit ( enter q )                                    |");
+        System.out.println("|                     1: Continue ( enter cont )                             |");
+        System.out.println("|                     2: Exit ( enter quit )                                 |");
         System.out.println("+                                                                            +");
         System.out.println("|                              RULES                                         |");
         System.out.println("|                              ------                                        |");
@@ -35,24 +37,69 @@ public class App {
         //Prompt For Word
         try {
             System.out.println("******************************************************************************");
-            System.out.println("::Enter the word you wish to encrypt:");
-            String enteredWord = buffer.readLine();
-            System.out.println("\n*****************************************************************************");
+            System.out.println(": Enter the word/words you wish to encrypt:");
+            String enteredWord = buffer.readLine() ;
+            System.out.println("\n------------------------------------------------------------------------------");
 
-            System.out.println("\n::Enter Shift Factor");
+            System.out.println(": Enter Shift Factor");
             int enteredFactor = scanner.nextInt();
+            System.out.println("\n-------------------------------------------------------------------------------");
 
             encrypt.setWordToEncrypt(enteredWord);
             encrypt.setShiftFactor( enteredFactor );
-            System.out.printf("You Entered: %s %n", encrypt.getWordToEncrypt() );
-            System.out.printf("Encrypted: %s %n", encrypt.encryptedString() );
+            System.out.printf("=> You Entered      : %s %n", encrypt.getWordToEncrypt() );
+            System.out.printf("=> Encrypted Word(s): %s %n", encrypt.encryptedString() );
 
             decrypt.setWordToDecrypt( encrypt.encryptedString() );
             decrypt.setDecryptFactor( encrypt.getShiftFactor() );
-            System.out.printf("Decrypted: %s %n",decrypt.decryptedWord() );
+            System.out.printf("=> Decrypted Word(s): %s %n",decrypt.decryptedWord() );
 
+            System.out.println("_______________________________________________________________________________");
+
+
+            System.out.println("\n\n                            Select an Option                                ");
+            System.out.println("                            -------------                                       ");
+            System.out.println("         Continue ( cont )                   quit( quit )                       ");
+            String choice = buffer.readLine();
+
+            while( choice.equals(continues) ){
+                System.out.println("******************************************************************************");
+                System.out.println(": Enter the word/words you wish to encrypt:");
+                String newWord = buffer.readLine() ;
+                System.out.println("\n------------------------------------------------------------------------------");
+
+                System.out.println(": Enter Shift Factor");
+                int newFactor = scanner.nextInt();
+                System.out.println("\n-------------------------------------------------------------------------------");
+
+                encrypt.setWordToEncrypt(newWord);
+                encrypt.setShiftFactor( newFactor );
+                System.out.printf("=> You Entered      : %s %n", encrypt.getWordToEncrypt() );
+                System.out.printf("=> Encrypted Word(s): %s %n", encrypt.encryptedString() );
+
+                decrypt.setWordToDecrypt( encrypt.encryptedString() );
+                decrypt.setDecryptFactor( encrypt.getShiftFactor() );
+                System.out.printf("=> Decrypted Word(s): %s %n",decrypt.decryptedWord() );
+
+                System.out.println("_______________________________________________________________________________");
+
+
+                System.out.println("\n\n                            Select an Option                               ");
+                System.out.println("                            -------------                                      ");
+                System.out.println("        Continue ( cont )                   quit( quit )                       ");
+                String newChoice = buffer.readLine();
+                if( newChoice.equals("cont")){
+                    newChoice = continues;
+                }else{
+                    break;
+                }
+            }
+            System.out.println(  "*****************************************************************************");
+            System.out.println();
+            System.out.println("                 βｙё♪ Bye (( ヾ( ^-^)ゞ  Have A Great Day                      ");
+            System.out.println();
         }catch ( IOException ex){
-            ex.getMessage();
+            ex.printStackTrace();
         }
 
     }
