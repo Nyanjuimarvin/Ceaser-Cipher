@@ -11,12 +11,12 @@ A console application that encrypts and decrypts words using a shift factor. The
 A strict set of rules is followed from the point of entering a word to the process of encryption and decryption. The behavior driven development used is as follows:  
 | Behavior                            | Input                                                      | Expected Output                                                         |
 |-------------------------------------|------------------------------------------------------------|-------------------------------------------------------------------------|
-| Encrypt a Word using a shift Factor | 1. A string of words 2. A shifting factor                  | A word whose letters are encrypted using the given shift factor         |
+| Encrypt a Word using a shift Factor | A string of words 2 and a shifting factor                  | A word whose letters are encrypted using the given shift factor         |
 | Decrypt the encrypted word          | The encrypted word from the first step,the shifting factor | A word or string of words decrypted using the shift factor from before. |
 |                                     |                                                            |                                                                         |
 
 ## Test Driven Development
-The methods that handle encryption and decryption go throug a series of tests before they return the desired output. These tests are written with the help of jUnit.
+The methods that handle encryption and decryption go through a series of tests before they return the desired output. These tests are written with the help of jUnit.
 
 ## Setup
 ### Prerequisites
@@ -26,15 +26,15 @@ The methods that handle encryption and decryption go throug a series of tests be
 
 ### Install
 
-Clone the repository using the following command:
+Clone the repository using the following command:  
 ```git clone https://github.com/Nyanjuimarvin/Ceaser-Cipher.git```
 
 ### Run
-Open the project directory in the terminal and navigate to the java directory using 
-```cd src/main/java```
-After navigation, compile the files using
-```javac *.java```
-And finally run the app using:
+Open the project directory in the terminal and navigate to the java directory using:  
+```cd src/main/java```  
+After navigation, compile the files using:  
+```javac *.java```  
+And finally run the app using:  
 ```java App```
 
 
