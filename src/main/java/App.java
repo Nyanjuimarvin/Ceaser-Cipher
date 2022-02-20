@@ -43,6 +43,11 @@ public class App {
             encrypt.setShiftFactor( enteredFactor );
             System.out.printf("You Entered: %s %n", encrypt.getWordToEncrypt() );
             System.out.printf("Encrypted: %s %n", encrypt.encryptedString() );
+
+            decrypt.setWordToDecrypt( encrypt.encryptedString() );
+            decrypt.setDecryptFactor( encrypt.getShiftFactor() );
+            System.out.printf("Decrypted: %s %n",decrypt.decryptedWord() );
+
         }catch ( IOException ex){
 
         }
